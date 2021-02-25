@@ -1,6 +1,6 @@
 # Solutions to exercises from "The C Programming Language", 2nd Edition
 
-One possible way of solving the exercises from the cornerstone book, by K&R.  
+One possible way of solving the exercises from the legendary book, by K&R.  
   
 ### The C Programming Language, Second Edition  
 **BrianW. Kernighan & Dennis M. Ritchie**  
