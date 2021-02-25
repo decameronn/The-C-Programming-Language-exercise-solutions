@@ -15,6 +15,3 @@ A: [The C Programming Language, Second Edition](https://www.amazon.com/Programmi
   
 Q: Who are K&R?  
 A: [Brian Kernighan](https://www.youtube.com/watch?v=O9upVbGSBFo) and [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie) 
-
-Q: How can this book help me?  
-A: It helped me get a job as a software developer at a big company. It can help you, too.
