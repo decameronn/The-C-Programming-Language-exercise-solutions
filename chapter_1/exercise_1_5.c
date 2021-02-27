@@ -13,6 +13,7 @@ int main(void) {
    *  2. print fahr value and celsius value (calculated inside the expression)
    *  3. decrement fahr value by 20 at each step
    */
+  
   int fahr;
   for (fahr = MAX; fahr >= MIN; fahr -= STEP) {
     printf("%3d %5.1f\n", fahr, (5.0/9.0) * (fahr - 32));
