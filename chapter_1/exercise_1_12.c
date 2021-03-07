@@ -3,10 +3,16 @@
 
 int main(void) {
 
-  int c;
+  int c, prev_c;
 
-  while ((c = getchar()) != EOF && (c = getchar()) != '\n') {
-    if (c == ' ') ;
+  while ((c = getchar()) != EOF) {
+   
+    putchar(c);
+   
+    if (c == ' ' || c == '\t') {
+      c = '\n';
+      putchar(c);
+    }
   }
 
   return (0);
