@@ -3,7 +3,7 @@
 
 int main(void) {
 
-  int c;git a
+  int c;
 
   while ((c = getchar()) != EOF) {
     putchar(c);
