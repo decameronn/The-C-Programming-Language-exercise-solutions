@@ -32,6 +32,9 @@ int main(void) {
 
     word_len = ? (take c into account)
     word_len = the actual x index (position on x axis)
+
+    = don't increase x, just switch to that position
+    = increase y at that position
     */
 
     for (x = 0; x < MAX_WORD_LEN; ++x) {
