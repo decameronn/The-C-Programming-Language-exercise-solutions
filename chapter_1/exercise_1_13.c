@@ -8,14 +8,14 @@
 int main(void) {
   int c;
   int x, y;
-  int word_len;  // counter for length of input words
+  int word_start, word_end, word_len;
   int histogram[MAX_WORD_LEN][MAX_WORD_HEIGHT];
 
   word_len = 0;
 
   while ((c = getchar()) != EOF) {
     if (c == ' ' || c == '\t' || c == '\n') {
-      /* don't do anything */
+      ++word_start;
     }
     else if (word_len >= MIN_WORD_LEN && word_len <= MAX_WORD_LEN) {
       if (word_len == 3) {
