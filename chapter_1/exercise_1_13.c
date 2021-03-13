@@ -26,6 +26,10 @@ int main(void) {
     ++word_len
   word_len = the actual x index (position on x axis)
 
+  check for whitespace as start/end for words in such as way
+  that it shouldn't matter whether we start the input with a 
+  whitespace or not
+
   = don't increase x, just switch to that position
   = increase y at that position
   */
