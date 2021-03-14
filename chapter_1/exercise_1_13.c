@@ -1,24 +1,35 @@
 
 #include <stdio.h>
 
-#define MAX_WORD_HEIGHT 10
-#define MAX_WORD_LEN 10
-#define MIN_WORD_LEN 1
+#define MAX_WORD_HEIGHT 100
+#define MAX_WORD_LEN    10
+#define MIN_WORD_LEN    1
+
+#define INSIDE_WORD  1
+#define OUTSIDE_WORD 0
 
 int main(void) {
   int c;
   int x, y;
+  int state;
   int word_start, word_end, word_len;
   int histogram[MAX_WORD_LEN][MAX_WORD_HEIGHT];
 
-  word_len = 0;
+  word_start = word_end = word_len = 0;
+  state = OUTSIDE_WORD;
 
   while ((c = getchar()) != EOF) {
     if (c == ' ' || c == '\t' || c == '\n') {
-      x = word_len;
-      ++y;
+      if (state == INSIDE_WORD) {
+        state = OUTSIDE_WORD;
+        x = word_len;
+        ++y;
+      }
+    } else if (state == OUTSIDE_WORD) {
+      state = INSIDE_WORD;
+      word_len = c;
+      ++word_len;
     }
-    ++word_len;
   }
 
   /* FIXME
@@ -27,7 +38,7 @@ int main(void) {
   word_len = the actual x index (position on x axis)
 
   check for whitespace as start/end for words in such as way
-  that it shouldn't matter whether we start the input with a 
+  that it shouldn't matter whether we start the input with a
   whitespace or not
 
   = don't increase x, just switch to that position
