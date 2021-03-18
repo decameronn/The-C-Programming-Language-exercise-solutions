@@ -14,60 +14,61 @@ int main(void) {
   int word_len;
   int histogram[MAX_WORD_LEN];
 
-  word_len = MIN_WORD_LEN; /* don't count spaces */
+  word_len = 0;
   state = OUTSIDE_WORD;
+  for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
+    histogram[x] = 0;
+  }
 
   /* horizontal rows */
-  /* TODO
-  if we encounter a space 
+  /*
+  if we encounter a space
     (optional) then change the state to OUTSIDE
     count the number of letters so far
     for loop through array
       if array[index] == number of letters
       print the index
-  (optional) change the state to INSIDE 
+  (optional) change the state to INSIDE
 
-  while c = getchar 
+  while c = getchar
     then putchar(c)
     word_len++
     if c == space
-      if state == OUTSIDE 
+      if state == OUTSIDE
         then state = INSIDE
-    if word_len > MAX_WORD_LEN 
+    if word_len > MAX_WORD_LEN
       then word_len = MAX_WORD_LEN
     for ; word_len < MAX_WORD_LEN; word_len++
       print histogram[word_len+1]
-    word_len = 1 (start counting again the length of the word)
+    word_len = 0 (start counting again the length of the word)
   */
 
-  
-
-  /* verical columns */
-  /*
+  /* FIXME */
   while ((c = getchar()) != EOF) {
+    putchar(c);
+    ++word_len;
     if (c == ' ' || c == '\t' || c == '\n') {
-      if (word_len > MAX_WORD_HEIGHT) {
-        word_len = MAX_WORD_HEIGHT;
-      }
-      if (state == INSIDE_WORD) {
-        state = OUTSIDE_WORD;
-        x = word_len;
-        ++y;
-      }
-    } else if (state == OUTSIDE_WORD) {
+      state = OUTSIDE_WORD;
+      /* word_len = ? */
+    }
+    if (state == OUTSIDE_WORD) {
       state = INSIDE_WORD;
-      ++word_len;
+      if (word_len >= MIN_WORD_LEN && word_len <= MAX_WORD_LEN) {
+        /* ? */
+      }
+      word_len = 0; /* reset word counter */
     }
   }
 
-  for (x = 0; x < MAX_WORD_LEN; ++x) {
-    for (y = 0; y < MAX_WORD_HEIGHT; ++y) {
-      // histogram[x][y] = 0;
-      printf(" %d ", histogram[x][y]);
+  for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
+    printf(" [%d] ", histogram[x]);
+    for (y = MIN_WORD_LEN; y < histogram[x]; ++y) {
+      printf(" * ");
     }
     printf("\n");
   }
-  */
+
+  /* TODO vertical columns */
 
   return (0);
 }
