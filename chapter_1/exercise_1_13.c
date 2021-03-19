@@ -49,7 +49,7 @@ int main(void) {
     ++word_len;
     if (c == ' ' || c == '\t' || c == '\n') {
       state = OUTSIDE_WORD;
-      /* word_len = ? */
+      --word_len;
     }
     if (state == OUTSIDE_WORD) {
       state = INSIDE_WORD;
