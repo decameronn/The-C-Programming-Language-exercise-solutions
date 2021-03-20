@@ -54,21 +54,19 @@ int main(void) {
     if (state == OUTSIDE_WORD) {
       state = INSIDE_WORD;
       if (word_len >= MIN_WORD_LEN && word_len <= MAX_WORD_LEN) {
-        /* ? */
+        ++histogram[word_len]; /* !!! this was *hard* !!! */
       }
       word_len = 0; /* reset word counter */
     }
   }
 
   for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
-    printf(" [%d] ", histogram[x]);
-    for (y = MIN_WORD_LEN; y < histogram[x]; ++y) {
-      printf(" * ");
+    printf(" %3d > ", x);
+    for (y = 0; y < histogram[x]; ++y) { /* check the word_len for horizontal row */
+      printf("%d", y);
     }
     printf("\n");
   }
-
-  /* TODO vertical columns */
 
   return (0);
 }
