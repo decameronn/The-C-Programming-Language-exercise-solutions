@@ -61,7 +61,7 @@ int main(void) {
 
   for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
     printf(" %3d > ", x);
-    for (y = 0; y < histogram[x]; ++y) { /* print * at index h[x] */
+    for (y = 0; y < histogram[x+1]; ++y) { /* print * at index h[x] */
       printf(" * ");
     }
     printf("\n");
