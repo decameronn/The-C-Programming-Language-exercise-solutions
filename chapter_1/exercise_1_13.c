@@ -24,10 +24,10 @@ int main(void) {
   while ((c = getchar()) != EOF) {
     putchar(c);
 
-    if (c != ' ' || c != '\t' || c != '\n') {
+    if (c != ' ' && c != '\t' && c != '\n') {
       state = INSIDE_WORD;
       ++word_len;
-      if (word_len > MAX_WORD_LEN) {
+      if (word_len >= MAX_WORD_LEN) {
         word_len = MAX_WORD_LEN;
       }
     }
@@ -37,18 +37,16 @@ int main(void) {
       ++blank_len;
     }
     if (state == OUTSIDE_WORD) {
-      if (word_len >= MIN_WORD_LEN &&
-          word_len <= MAX_WORD_LEN) { /* might need to add +1 to MAX to print
-                                         properly */
+      if (word_len >= MIN_WORD_LEN && word_len <= MAX_WORD_LEN) {
         ++histogram[word_len];
       }
       word_len = 0;
     }
   }
 
-  for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
-    printf(" %2d > ", x);
-    for (y = 0; y < histogram[x]; ++y) {
+  for (y = MIN_WORD_LEN; y <= MAX_WORD_LEN; ++y) {
+    printf(" %2d > ", y);
+    for (x = 1; x <= histogram[y]; ++x) {
       printf(" * ");
     }
     printf("\n");
