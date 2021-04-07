@@ -7,6 +7,8 @@
 #define INSIDE_WORD 1
 #define OUTSIDE_WORD 0
 
+#define NONE 0
+
 int main(void) {
 
   /**
@@ -67,6 +69,7 @@ int main(void) {
     }
   }
 
+  printf("\nHORIZONTAL HISTOGRAM\n");
   for (y = MIN_WORD_LEN; y <= MAX_WORD_LEN; ++y) {
     printf(" %2d > ", y);
     for (x = 1; x <= histogram[y]; ++x) {
@@ -74,6 +77,18 @@ int main(void) {
     }
     printf("\n");
   }
+
+  /* FIXME : work in progress */
+  printf("\nVERTICAL HISTOGRAM\n");
+  for (x = y; x > NONE; --x) {
+    printf(" %2d > ", x);
+    for (y = 1; x <= y; ++x) {
+      printf(" * ");
+    }
+    printf("\n");
+  }
+  /* for (;;) {} */
+
 
   return (0);
 }
