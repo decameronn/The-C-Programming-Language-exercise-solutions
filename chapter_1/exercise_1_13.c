@@ -7,8 +7,6 @@
 #define INSIDE_WORD 1
 #define OUTSIDE_WORD 0
 
-#define NONE 0
-
 int main(void) {
 
   /**
@@ -80,10 +78,10 @@ int main(void) {
 
   /* FIXME : work in progress */
   printf("\nVERTICAL HISTOGRAM\n");
-  for (x = y; x > NONE; --x) {
-    printf(" %2d > ", x);
-    for (y = 1; x <= y; ++x) {
-      printf(" * ");
+  for (x = y; x > 0; --x) {
+    for (y = 1; y <= MAX_WORD_LEN; ++y) {
+      if (histogram[y] >= x) printf ("*");
+      else (printf(" "));
     }
     printf("\n");
   }
