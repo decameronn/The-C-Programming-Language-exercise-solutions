@@ -27,8 +27,10 @@ int main(void) {
    *  that matches the number saved at that index (if we have 3 words
    *  4 letters long each, we print arr[4] ***)
    * 
-   *  VERTICAL HISTOGRAM
-   *  
+   * VERTICAL HISTOGRAM
+   * count the items on each column 
+   *  if count > 0, print the columns, one at a time
+   *  if count == 0, just print a blank space
    */
 
   int c;
@@ -82,6 +84,7 @@ int main(void) {
     for (y = 1; y <= MAX_WORD_LEN; ++y) {
       if (histogram[y] >= x) printf ("*");
       else (printf(" "));
+      printf(" ");
     }
     printf("\n");
   }
