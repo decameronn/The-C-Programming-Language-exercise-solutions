@@ -3,17 +3,18 @@
 
 #define MAX_WORD_LEN 10
 #define MIN_WORD_LEN 1
+#define MIN_COLUMN_HEIGHT 1
+#define MAX_COLUMN_HEIGHT 10
 
 #define INSIDE_WORD 1
 #define OUTSIDE_WORD 0
 
 int main(void) {
-
   /**
    * HORIZONTAL HISTOGRAM
    * create an array, arr.length == len of the longest accepted word
    * at each index, store word lengths corresponding to that index
-   * count word len: 
+   * count word len:
    *  define a counter to store the value
    *  as long as input is not a blank, counter++
    * increase array index:
@@ -26,18 +27,21 @@ int main(void) {
    *  after that, we iterate this array and print a given symbol (say, *)
    *  that matches the number saved at that index (if we have 3 words
    *  4 letters long each, we print arr[4] ***)
-   * 
+   *
    * VERTICAL HISTOGRAM
-   * count the items on each column 
+   * count & print the items on each column
    *  if count > 0, print the columns, one at a time
    *  if count == 0, just print a blank space
+   * print the histogram position below the columns
+   *  it's the usual printing, but the catch is to play with the
+   *  spacing such that the numbers will fit directly below the columns
    */
 
   int c;
   int x, y;
   int state;
   int word_len, blank_len;
-  int histogram[MAX_WORD_LEN+1];
+  int histogram[MAX_WORD_LEN + 1];
 
   word_len = 0;
   blank_len = 0;
@@ -72,24 +76,29 @@ int main(void) {
   printf("\nHORIZONTAL HISTOGRAM\n");
   for (y = MIN_WORD_LEN; y <= MAX_WORD_LEN; ++y) {
     printf(" %2d > ", y);
-    for (x = 1; x <= histogram[y]; ++x) {
+    for (x = MIN_WORD_LEN; x <= histogram[y]; ++x) {
       printf(" * ");
     }
     printf("\n");
   }
 
-  /* FIXME : work in progress */
+  /* BUG This only works if MAX_WORD_LEN == MAX_COLUMN_HEIGHT 
+   * Check the data against the printing part
+   */
   printf("\nVERTICAL HISTOGRAM\n");
   for (x = y; x > 0; --x) {
-    for (y = 1; y <= MAX_WORD_LEN; ++y) {
-      if (histogram[y] >= x) printf ("*");
-      else (printf(" "));
-      printf(" ");
+    for (y = MIN_COLUMN_HEIGHT; y <= MAX_COLUMN_HEIGHT; ++y) {
+      if (histogram[y] >= x)
+        printf(" *");
+      else
+        (printf("  "));
+      printf("  ");
     }
     printf("\n");
   }
-  /* for (;;) {} */
-
+  for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
+    printf("%2d  ", x);
+  }
 
   return (0);
 }
