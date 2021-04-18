@@ -23,7 +23,7 @@ int main(void) {
 
   /** (0) initialize the data */
   freq_max_len = 0;
-  for (i = 0; i <= MAX_ITEMS; ++i) freq[i] = 0;
+  for (i = 0; i < MAX_ITEMS; ++i) freq[i] = 0;
 
   /** (1) determine input range */
   while ((c = getchar()) != EOF) {
