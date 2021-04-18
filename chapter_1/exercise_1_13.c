@@ -1,11 +1,8 @@
 
 #include <stdio.h>
 
-#define MAX_WORD_LEN 10
 #define MIN_WORD_LEN 1
-#define MIN_COLUMN_HEIGHT 1
-#define MAX_COLUMN_HEIGHT 10
-
+#define MAX_WORD_LEN 10
 #define INSIDE_WORD 1
 #define OUTSIDE_WORD 0
 
@@ -43,23 +40,15 @@ int main(void) {
   int word_len, blank_len;
   int histogram[MAX_WORD_LEN + 1];
 
-  word_len = 0;
-  blank_len = 0;
-  state = OUTSIDE_WORD;
-  for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
-    histogram[x] = 0;
-  }
+  /** (0) initialize the data */
+  word_len = blank_len = 0;
+  state = INSIDE_WORD;
+  for (x = 0; x <= MAX_WORD_LEN; ++x) histogram[x] = 0;
 
+  /** (1) counting logic */
   while ((c = getchar()) != EOF) {
     putchar(c);
-
-    if (c != ' ' && c != '\t' && c != '\n') {
-      state = INSIDE_WORD;
-      ++word_len;
-      if (word_len >= MAX_WORD_LEN) {
-        word_len = MAX_WORD_LEN;
-      }
-    }
+    ++word_len;
 
     if (c == ' ' || c == '\t' || c == '\n') {
       state = OUTSIDE_WORD;
@@ -69,10 +58,13 @@ int main(void) {
       if (word_len >= MIN_WORD_LEN && word_len <= MAX_WORD_LEN) {
         ++histogram[word_len];
       }
+      state = INSIDE_WORD;
       word_len = 0;
+      blank_len = 0;
     }
   }
 
+  /** (2) print the results */
   printf("\nHORIZONTAL HISTOGRAM\n");
   for (y = MIN_WORD_LEN; y <= MAX_WORD_LEN; ++y) {
     printf(" %2d > ", y);
@@ -82,22 +74,17 @@ int main(void) {
     printf("\n");
   }
 
-  /* BUG This only works if MAX_WORD_LEN == MAX_COLUMN_HEIGHT 
-   * Check the data against the printing part
-   */
   printf("\nVERTICAL HISTOGRAM\n");
   for (x = y; x > 0; --x) {
-    for (y = MIN_COLUMN_HEIGHT; y <= MAX_COLUMN_HEIGHT; ++y) {
-      if (histogram[y] >= x)
-        printf(" *");
-      else
-        (printf("  "));
-      printf("  ");
+    for (y = 0; y < MAX_WORD_LEN; ++y) {
+      if (histogram[y] > x) printf(" *");
+      else printf(" ");
+      printf(" ");
     }
     printf("\n");
   }
   for (x = MIN_WORD_LEN; x <= MAX_WORD_LEN; ++x) {
-    printf("%2d  ", x);
+    printf("%2d", x);
   }
 
   return (0);

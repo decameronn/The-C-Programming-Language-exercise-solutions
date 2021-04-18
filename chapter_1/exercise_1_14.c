@@ -41,7 +41,9 @@ int main(void) {
     if (c >= '!' && c <= '~') {
       ++freq[c - '!'];
       /* calculate the column height */
-      if (freq[c - '!'] >= freq_max_len) freq_max_len = freq[c - '!'];
+      if (freq[c - '!'] >= freq_max_len) {
+        freq_max_len = freq[c - '!'];
+      }
     }
   }
 
