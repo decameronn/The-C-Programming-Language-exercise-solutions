@@ -9,5 +9,5 @@ for /f "delims=" %%f in ('dir /b /a-d /od /tw %cd%\*.c') do (
 
 echo The newest file is: %file%
 echo Compiling %file% with GCC...
-call %my_path%\gcc.exe ^
+call gcc.exe ^
   -Wall -Wmissing-prototypes -Wextra -O2 -std=c90 -ggdb3 %file%
