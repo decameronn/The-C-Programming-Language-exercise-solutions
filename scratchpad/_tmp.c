@@ -51,8 +51,8 @@ int getline(char line[], int len) {
 
 /* copy "from" into "to"; assume "to" is big enough */
 void copy(char to[], char from[]) {
-  int i;
-  
-  i = 0;
-  while((to[i] = from[i]) != '\0') ++i;
+  int i = 0;
+  while ((to[i] = from[i]) != '\0') {
+    ++i;
+  }
 }
