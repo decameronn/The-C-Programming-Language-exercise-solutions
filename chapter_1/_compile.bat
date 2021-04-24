@@ -1,5 +1,6 @@
 :: @brief Find the newest .c file in a folder and compile it with gcc
 :: @author Decameron
+:: @platform Win32
 
 @echo off
 for /f "delims=" %%f in ('dir /b /a-d /od /tw %cd%\*.c') do (
