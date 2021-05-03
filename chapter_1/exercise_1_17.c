@@ -22,7 +22,7 @@ int main(void) {
    */
 
   int len = 0;
-  volatile int short_len = 0;
+  int short_len = 0;
   char line[MAXLEN] = {0};
 
   while ((len = getline(line, MAXLEN)) > 0) {
@@ -31,21 +31,6 @@ int main(void) {
     if (len > MAXLEN) {
       printf("%s\n", line);
     }
-    // else if (len >= MINLEN && len <= MAXLEN) {
-    //   short_len = len;
-    //   printf("Line shorter than 80 characters.\n");
-    // } 
-
-    // if (len >= MINLEN && len <= MAXLEN) {
-    //   printf("Line shorter than 80 characters. Exiting...\n");
-    //   return EXIT_FAILURE;
-    // } 
-    // else if (len > MAXLEN) {
-    //   printf("%s\n", line);
-    // } 
-    // else {
-    //   return EXIT_FAILURE;
-    // }
   }
 
   return EXIT_SUCCESS;
@@ -63,12 +48,4 @@ int getline(char s[], int len) {
   }
   s[i] = '\0';
   return i;
-}
-
-/* copy "from" into "to"; assume "to" is big enough */
-void copy(char to[], char from[]) {
-  int i = 0;
-  while ((to[i] = from[i]) != '\0') {
-    ++i;
-  }
 }
