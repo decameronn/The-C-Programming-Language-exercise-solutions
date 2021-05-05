@@ -17,25 +17,27 @@ int main(void) {
    *  if (current line's len > 80)
    *    save current line
    *    print current line
+   *  print the number of lines with len > 80 (optional)
    */
 
   int len = 0;
-  int desired_len = 0;
   int num_of_lines = 0;
   char line[MAXLEN] = {0};
-  char desired_line[MAXLEN] = {0};
+  char current_line[MAXLEN] = {0};
 
   while ((len = getline(line, MAXLEN)) > 0) {
-    if (len > CURLEN) {
-      desired_len = len;
+    if (len > CURLEN && len <= MAXLEN) {
       ++num_of_lines;
-      copy(desired_line, line);
-    }
-    if (desired_len > CURLEN) {
-      printf("%s\n", desired_line);
-    }
+      copy(current_line, line);
+      printf("%s", current_line);
+    } 
+    else if (len > MAXLEN) {
+      printf("Line is longer than 1000 characters. Aborting...\n");
+      return -1;
+    } 
+    else { /* do nothing */ }
   }
-  printf("Number of lines greater than 80 columns is: [%d]: ", num_of_lines);
+  printf("\nNumber of lines greater than 80 columns is: [ %d ]: ", num_of_lines);
 
   return (0);
 }
