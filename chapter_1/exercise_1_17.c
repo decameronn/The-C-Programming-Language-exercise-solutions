@@ -5,18 +5,18 @@
 
 #include <stdio.h>
 
-#define MAXLEN 85
+#define MAXLEN 1000
 #define CURLEN 80
 
 int getline(char s[], int len);
 
 int main(void) {
-
   int len = 0;
   int num_of_lines = 0;
-  char line[MAXLEN] = {0};
+  char line[MAXLEN] = {0}; /* C99 and later */
 
   while ((len = getline(line, MAXLEN)) > 0) {
+    /* FIXME This needs better handling. */
     if (len > MAXLEN) {
       printf("Line is longer than 1000 characters. Aborting...\n");
       return -1;
@@ -27,7 +27,8 @@ int main(void) {
     } 
     else { /* do nothing */ }
   }
-  printf("\nNumber of lines greater than 80 columns is: [ %d ]: ", num_of_lines);
+  printf("\nNumber of lines greater than 80 columns is: [ %d ]: ",
+         num_of_lines);
 
   return (0);
 }
